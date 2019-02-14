@@ -153,7 +153,7 @@ public class JobMixClient {
     private Boolean checkClusters(final long elapsed){
         //System.out.println("In checkCluster with time elapsed="+elapsed);
         // count will go over nClusters once every cluster is done.... anyway, if it's been more than ~15 minutes (1000 seconds), write the file
-        if((currentCount>nClusters) || (elapsed > 1000000) ) {
+        if((nClusters == 1 && elapsed > 10000) || (currentCount>nClusters) || (elapsed > 1000000) ) {
             return true;
         }
         return false;
@@ -162,7 +162,7 @@ public class JobMixClient {
 
     private void checkToResetStream(final long timestamp){
         long elapsed = timestamp - lastRotated;
-        if ( (lastRotated == 0) || (elapsed > 10000 && checkClusters(elapsed))){
+        if ( (lastRotated == 0) || (checkClusters(elapsed))){
             resetStream();
             lastRotated = timestamp;
         }

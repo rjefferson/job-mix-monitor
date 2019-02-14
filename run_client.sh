@@ -28,5 +28,5 @@ java \
     -Djava.security.policy=bin/policy.all \
     -Dlia.Monitor.ConfigURL=file:conf/App.properties \
     -Djava.util.logging.config.class=lia.Monitor.monitor.LoggerConfigClass \
-    JobMixClient -o "$outfile" -c "$cluster" >>/dev/null 2>&1 
+    JobMixClient -o "$outfile" -c "$cluster" >>/dev/null 2>&1 & 
 
